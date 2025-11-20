@@ -1,0 +1,60 @@
+.user-dialog .dialog-content {
+    padding: 1rem 0.2rem;
+}
+
+/* 2 columns layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 18px;
+}
+
+/* Full width row (password) */
+.form-field.full-width {
+    grid-column: span 2;
+}
+
+/* Label đẹp, nhỏ gọn */
+.form-field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+    color: #495057;
+}
+
+/* Input field căn đều */
+.p-inputtext,
+.p-dropdown {
+    width: 100%;
+    height: 38px;
+}
+
+/* Error text */
+.p-error {
+    font-size: 0.75rem;
+}
+
+/* Tối ưu spacing cho Dialog footer */
+.user-dialog .p-dialog-footer {
+    padding: 0.8rem 1rem !important;
+}
+
+/* Header nhỏ gọn */
+.user-dialog .p-dialog-header {
+    padding: 0.8rem 1rem !important;
+}
+
+/* Body compact */
+.user-dialog .p-dialog-content {
+    padding: 0 1rem 1rem 1rem !important;
+}
+
+.form-field .p-inputtext,
+.form-field .p-dropdown .p-dropdown-label {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    text-align: center;
+}
