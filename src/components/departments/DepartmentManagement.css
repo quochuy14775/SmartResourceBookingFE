@@ -1,0 +1,447 @@
+.user-management {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+
+.page-subtitle {
+    color: #6b7280;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.page-stats {
+    display: flex;
+    gap: 1rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 180px;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+.user-datatable .p-datatable-thead > tr > th,
+.user-datatable .p-datatable-tbody > tr > td {
+    padding: 10px 17px !important;
+}
+
+
+
+.card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    overflow: hidden;
+}
+
+.toolbar {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 0 1.5rem 0 !important;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+.toolbar-button {
+    font-weight: 500;
+}
+
+/* Container input + icon */
+.p-input-icon-left {
+    display: inline-flex;
+    align-items: center; /* căn giữa theo chiều dọc */
+    position: relative;
+    width: 300px;
+}
+
+/* Icon search */
+.p-input-icon-left .pi {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%); /* căn giữa theo chiều dọc */
+    font-size: 1rem;
+    color: #9ca3af;
+    pointer-events: none; /* tránh icon chặn input click */
+}
+
+/* Input text */
+.p-input-icon-left .search-input {
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem 2.5rem; /* padding-left đủ cho icon */
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.p-input-icon-left .search-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+
+.user-datatable {
+    animation: fadeIn 0.5s ease-in 0.2s backwards;
+}
+
+.user-datatable .p-datatable-tbody > tr {
+    cursor: pointer;
+}
+
+.p-datatable-wrapper {
+    overflow-x: hidden !important;
+}
+
+.user-dialog .p-dialog-content {
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.dialog-content {
+    padding: 1rem 0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-field label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+.form-field .p-inputtext,
+.form-field .p-dropdown {
+    width: 100%;
+}
+
+.p-error {
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: -0.25rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .page-header {
+        flex-direction: column;
+    }
+
+    .page-stats {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .stat-card {
+        flex: 1;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .page-stats {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .toolbar .p-toolbar-group-left,
+    .toolbar .p-toolbar-group-right {
+        width: 100%;
+    }
+}
+
+/* Áp dụng cho tất cả p-tag trong bảng */
+.p-tag {
+    width: 70px !important;        /* chiều rộng cố định */
+    height: 28px !important;       /* chiều cao cố định */
+    padding: 0 !important;         /* bỏ padding để không phá size */
+    display: flex !important;
+    justify-content: center !important; /* canh giữa ngang */
+    align-items: center !important;     /* canh giữa dọc */
+    border-radius: 6px !important;      /* bo góc đẹp */
+    font-size: 12px !important;
+    white-space: nowrap !important;     /* không cho xuống dòng */
+}
+
+
+/* Loading animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.user-datatable.p-datatable-loading {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Container paginator để có flex và gap */
+.user-datatable .p-paginator {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important; /* Căn phải hoặc center nếu muốn */
+    gap: 1rem; /* Khoảng cách giữa dropdown và currentPageReport */
+    flex-wrap: wrap;
+}
+
+/* Dropdown rowsPerPage */
+.user-datatable .p-paginator .p-dropdown {
+    min-width: 60px !important; /* đủ nhỏ, co vừa nội dung */
+    width: auto !important;
+    padding: 6px 12px !important;
+    height: 36px !important;
+    font-size: 13px !important;
+    border-radius: 8px !important;
+    border: 1px solid #cbd5e1 !important;
+    background-color: #f9fafb !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.user-datatable .p-paginator .p-dropdown:hover {
+    background-color: #f3f4f6 !important;
+    border-color: #94a3b8 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Label bên trong dropdown */
+.user-datatable .p-paginator .p-dropdown-label {
+    padding-left: 6px !important;
+}
+
+/* Trigger icon */
+.user-datatable .p-paginator .p-dropdown-trigger {
+    width: 2rem !important;
+}
+
+/* Dropdown items (global selector vì Portal) */
+.p-dropdown-items .p-dropdown-item {
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+    color: #374151 !important;
+    background-color: #ffffff !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease-in-out !important;
+    margin: 2px 0 !important;
+}
+
+.p-dropdown-items .p-dropdown-item:hover {
+    background-color: #f3f4f6 !important;
+    color: #1f2937 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+/* ===========================
+   CUSTOM CONFIRM DIALOG
+   =========================== */
+
+/* Container */
+.p-confirm-dialog {
+    border-radius: 18px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15) !important;
+}
+
+/* Header */
+.p-dialog-header {
+    padding: 1.25rem 1.5rem !important;
+    background: #f9fafb !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+.p-dialog-title {
+    font-size: 1.25rem !important;
+    font-weight: 700;
+    color: #374151 !important;
+}
+
+/* Content */
+.p-dialog-content {
+    padding: 1.75rem 1.75rem 1rem 1.75rem !important;
+    font-size: 1rem;
+    color: #4b5563 !important;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+/* Icon */
+.p-confirm-dialog-icon {
+    font-size: 1.7rem !important;
+    color: #f59e0b !important;
+    margin-top: 2px;
+}
+
+/* Footer */
+.p-dialog-footer {
+    padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+    background: #f9fafb !important;
+    border-top: 1px solid #e5e7eb !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 1rem !important;
+}
+
+/*!* ===========================*/
+/*   GHOST BUTTON CONFIRM DIALOG*/
+/*   =========================== *!*/
+
+/* Buttons chung */
+.p-confirm-dialog-reject,
+.p-confirm-dialog-accept {
+    min-width: 110px !important;
+    padding: 0.55rem 1.25rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    background: transparent !important;
+    border: 2px solid transparent !important;
+    transition: all 0.25s ease !important;
+    box-shadow: none !important;
+}
+
+/* ----- Cancel button ----- */
+.p-confirm-dialog-reject {
+    color: #6b7280 !important;
+    border-color: #d1d5db !important; /* light gray border */
+}
+
+.p-confirm-dialog-reject:hover {
+    background: rgba(0,0,0,0.03) !important;
+    border-color: #9ca3af !important; /* darker gray */
+    transform: translateY(-1px);
+}
+
+ /*----- Accept buttons theo severity -----*/
+
+/* Danger */
+.p-button-danger {
+
+    border-color: #fca5a5 !important;
+}
+
+.p-button-danger:hover {
+    background: rgba(220,38,38,0.08) !important;
+    color: #dc2626 !important;
+    border-color: #ef4444 !important;
+}
+
+/* Warning */
+.p-button-warning {
+
+    border-color: #fcd34d !important;
+}
+
+.p-button-warning:hover {
+    background: rgba(217,119,6,0.08) !important;
+    color: #d97706 !important;
+    border-color: #f59e0b !important;
+}
+
+/* Success */
+.p-button-success {
+
+    border-color: #86efac !important;
+}
+
+.p-button-success:hover {
+    color: #16a34a !important;
+    background: rgba(22,163,74,0.08) !important;
+    border-color: #22c55e !important;
+}
+
+/* Info */
+.p-button-info {
+
+    border-color: #93c5fd !important;
+}
+
+.p-button-info:hover {
+    color: #2563eb !important;
+    background: rgba(37,99,235,0.08) !important;
+    border-color: #3b82f6 !important;
+}
+

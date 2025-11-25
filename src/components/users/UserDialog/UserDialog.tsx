@@ -1,17 +1,18 @@
 'use client';
 
 import React from 'react';
-import { Dialog } from 'primereact/dialog';
-import { Button } from 'primereact/button';
-import { InputText } from 'primereact/inputtext';
-import { Dropdown } from 'primereact/dropdown';
-import { UserFormData, UserRole, UserStatus } from "@/types/user";
+import {Dialog} from 'primereact/dialog';
+import {Button} from 'primereact/button';
+import {InputText} from 'primereact/inputtext';
+import {Dropdown} from 'primereact/dropdown';
+import {UserFormData, UserRole, UserStatus} from "@/types/user";
 import './UserDialog.css';
 
 interface SelectOption<T> {
     label: string;
     value: T;
 }
+
 interface Props {
     visible: boolean;
     onHide: () => void;
@@ -36,26 +37,65 @@ const UserDialog: React.FC<Props> = ({
                                          statusOptions
                                      }) => {
 
-    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>, name: string) => {
-        const val = e.target.value || '';
-        setUser({ ...user, [name]: val });
-    };
+    // Small reusable field component for text inputs to reduce duplication
+    const TextField = ({
+                           label,
+                           name,
+                           type = 'text',
+                           required = false,
+                           className = ''
+                       }: {
+        label: string;
+        name: keyof UserFormData;
+        type?: string;
+        required?: boolean;
+        className?: string;
+    }) => (
+        <div className={`form-field ${className}`}>
+            <label>{label}{required ? ' *' : ''}</label>
+            <InputText
+                type={type}
+                value={(user[name] as any) ?? ''}
+                onChange={(e) => setUser({...user, [name]: (e?.target as HTMLInputElement)?.value ?? ''})}
+                className={required && submitted && !(user[name] as any) ? 'p-invalid' : ''}
+            />
+            {required && submitted && !(user[name] as any) && <small className="p-error">Required</small>}
+        </div>
+    );
 
-    const onDropdownChange = (e: { value: UserRole | UserStatus }, name: keyof UserFormData) => {
-        setUser({ ...user, [name]: e.value });
-    };
+    const DropdownField = ({
+                               label,
+                               name,
+                               options,
+                               placeholder
+                           }: {
+        label: string;
+        name: keyof UserFormData;
+        options: SelectOption<any>[];
+        placeholder?: string;
+    }) => (
+        <div className="form-field">
+            <label>{label}</label>
+            <Dropdown
+                value={user[name] as any}
+                options={options}
+                onChange={(e) => setUser({...user, [name]: e.value})}
+                placeholder={placeholder}
+            />
+        </div>
+    );
 
     const footer = (
-        <div>
-            <Button label="Cancel" icon="pi pi-times" outlined onClick={onHide} />
-            <Button label="Save" icon="pi pi-check" onClick={onSave} />
+        <div className="user-dialog-footer-buttons">
+            <Button label="Cancel" icon="pi pi-times" outlined className="btn-cancel" onClick={onHide}/>
+            <Button label="Save" icon="pi pi-check" className="btn-save" onClick={onSave}/>
         </div>
     );
 
     return (
         <Dialog
             visible={visible}
-            style={{ width: '520px' }}
+            style={{width: '520px'}}
             header={isEdit ? 'Edit User' : 'New User'}
             modal
             className="user-dialog"
@@ -66,80 +106,21 @@ const UserDialog: React.FC<Props> = ({
 
                 <div className="form-grid">
 
-                    <div className="form-field">
-                        <label>Username *</label>
-                        <InputText
-                            value={user.username}
-                            onChange={(e) => onInputChange(e, 'username')}
-                            className={submitted && !user.username ? 'p-invalid' : ''}
-                        />
-                        {submitted && !user.username && <small className="p-error">Required</small>}
-                    </div>
+                    <TextField label="Username" name="username" required/>
 
-                    <div className="form-field">
-                        <label>Email *</label>
-                        <InputText
-                            value={user.email}
-                            onChange={(e) => onInputChange(e, 'email')}
-                            type="email"
-                            className={submitted && !user.email ? 'p-invalid' : ''}
-                        />
-                        {submitted && !user.email && <small className="p-error">Required</small>}
-                    </div>
+                    <TextField label="Email" name="email" type="email" required/>
 
-                    <div className="form-field">
-                        <label>First Name *</label>
-                        <InputText
-                            value={user.firstName}
-                            onChange={(e) => onInputChange(e, 'firstName')}
-                            className={submitted && !user.firstName ? 'p-invalid' : ''}
-                        />
-                    </div>
+                    <TextField label="First Name" name="firstName" required/>
 
-                    <div className="form-field">
-                        <label>Last Name *</label>
-                        <InputText
-                            value={user.lastName}
-                            onChange={(e) => onInputChange(e, 'lastName')}
-                            className={submitted && !user.lastName ? 'p-invalid' : ''}
-                        />
-                    </div>
+                    <TextField label="Last Name" name="lastName" required/>
 
-                    <div className="form-field">
-                        <label>Department</label>
-                        <InputText
-                            value={user.department}
-                            onChange={(e) => onInputChange(e, 'department')}
-                        />
-                    </div>
+                    <TextField label="Department" name="department"/>
 
-                    <div className="form-field">
-                        <label>Phone</label>
-                        <InputText
-                            value={user.phone}
-                            onChange={(e) => onInputChange(e, 'phone')}
-                        />
-                    </div>
+                    <TextField label="Phone" name="phone"/>
 
-                    <div className="form-field">
-                        <label>Role</label>
-                        <Dropdown
-                            value={user.role}
-                            options={roleOptions}
-                            onChange={(e) => onDropdownChange(e, 'role')}
-                            placeholder="Select a role"
-                        />
-                    </div>
+                    <DropdownField label="Role" name="role" options={roleOptions} placeholder="Select a role"/>
 
-                    <div className="form-field">
-                        <label>Status</label>
-                        <Dropdown
-                            value={user.status}
-                            options={statusOptions}
-                            onChange={(e) => onDropdownChange(e, 'status')}
-                            placeholder="Select a status"
-                        />
-                    </div>
+                    <DropdownField label="Status" name="status" options={statusOptions} placeholder="Select a status"/>
 
                     {!isEdit && (
                         <div className="form-field full-width">
@@ -147,7 +128,10 @@ const UserDialog: React.FC<Props> = ({
                             <InputText
                                 type="password"
                                 value={user.password}
-                                onChange={(e) => onInputChange(e, 'password')}
+                                onChange={(e) => setUser({
+                                    ...user,
+                                    password: (e?.target as HTMLInputElement)?.value ?? ''
+                                })}
                             />
                         </div>
                     )}

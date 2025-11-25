@@ -26,6 +26,12 @@ const Sidebar: React.FC = () => {
             roles: ['ADMIN', 'MANAGER']
         },
         {
+            label: 'Department Management',
+            icon: 'pi pi-sitemap',
+            route: '/departments',
+            roles: ['ADMIN']
+        },
+        {
             label: 'Resource Management',
             icon: 'pi pi-box',
             route: '/resources',
